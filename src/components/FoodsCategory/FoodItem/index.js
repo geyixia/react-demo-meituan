@@ -1,4 +1,10 @@
-import './index.scss'
+import "./index.scss";
+import { useDispatch } from "react-redux";
+import {
+  setAddnum,
+  setAddPrice,
+  setCart,
+} from "../../../store/modules/takeaway";
 
 const Foods = ({
   id,
@@ -11,9 +17,21 @@ const Foods = ({
   like_ratio_desc,
   price,
   tag,
-  count
+  count,
 }) => {
-
+  const despatch = useDispatch();
+  const addSp = () => {
+    despatch(setAddnum(1));
+    despatch(setAddPrice(price));
+    const obj = {
+      id,
+      picture,
+      name,
+      price,
+      count: 1,
+    };
+    despatch(setCart(obj));
+  };
   return (
     <dd className="cate-goods">
       <div className="goods-img-wrap">
@@ -26,7 +44,7 @@ const Foods = ({
             <div className="goods-unit">{unit}</div>
             <div className="goods-detail-text">{description}</div>
           </div>
-          <div className="goods-tag">{food_tag_list.join(' ')}</div>
+          <div className="goods-tag">{food_tag_list.join(" ")}</div>
           <div className="goods-sales-volume">
             <span className="goods-num">月售{month_saled}</span>
             <span className="goods-num">{like_ratio_desc}</span>
@@ -38,12 +56,17 @@ const Foods = ({
             {price}
           </div>
           <div className="goods-count">
-            <span className="plus"></span>
+            <span
+              className="plus"
+              onClick={() => {
+                addSp();
+              }}
+            ></span>
           </div>
         </div>
       </div>
     </dd>
-  )
-}
+  );
+};
 
-export default Foods
+export default Foods;
