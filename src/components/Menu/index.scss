@@ -1,10 +1,11 @@
 .list-menu {
-  height: 100%;
   width: 95px;
+  position: sticky;
+  top: 0px;
   display: flex;
   flex-direction: column;
   z-index: 1;
-  position: relative;
+  // position: relative;
   overflow: scroll;
   margin-left: -15px;
   padding-left: 15px;
